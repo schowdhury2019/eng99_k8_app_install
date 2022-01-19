@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-deployment
+
+# Specifications
+spec:
+  selector:
+    matchLabels:
+      app: nginx # Look for this label to match with k8 service
+
+  replicas: 2
+
+  template:
+    metadata:
+      labels:
+        app: nginx # This label connects to the service or any other K8 components
+    spec:
+      containers:
+        - name: nginx
+          image: eng99/eng99-final-project:latest
+          ports:
+            - containerPort: 80

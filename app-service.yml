@@ -1,0 +1,21 @@
+apiVersion: v1
+kind: Service
+
+metadata:
+  name: nginx-svc
+  namespace: default
+
+spec:
+  ports:
+    - nodePort: 30442 # Range: 30000 - 32768
+      port: 80
+      protocol: TCP
+      targetPort: 5000
+
+  selector:
+    app:
+      nginx # Connects service to deployment
+
+
+      # Creates load balancer type of deployment
+  type: LoadBalancer
